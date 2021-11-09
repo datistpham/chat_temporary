@@ -1,8 +1,14 @@
 socket.on('typing-self', (data) => {
-    if ($(".message-1").val()!== '') {
-        $('.on-typing').html(data)
+    $('.name-typing').html(`${data}`)
+    if(data!=='') {
+        $('.dynamic-mes').html(`<div class="balls">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>`)
+
     }
     else {
-         $('.on-typing').html('')
+        $('.dynamic-mes').html('')
     }
 })

@@ -1,0 +1,20 @@
+<div class='storage-theme'>
+    <div class='header-theme'>
+        <p>Choose Theme: </p>
+        <div class='close-theme'><i class="fas fa-times"></i></div>
+    </div>
+    <div class="all-theme">
+        <% data.forEach((dat)=> { %>
+            <div class='all-theme-1' data-theme='<%= dat.content_theme %>' data-aos="flip-left">
+                <div class='all-theme-1-title'>
+                    <p>
+                        <%= dat.name_theme %>
+                    </p>
+                </div>
+                <div class='all-theme-1-theme'>
+                    <img src='<%= dat.content_theme %>' alt="can't display . Sorry =((">
+                </div>
+            </div>
+            <% }) %>
+    </div>
+</div>

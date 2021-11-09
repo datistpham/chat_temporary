@@ -5,153 +5,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://play-lh.googleusercontent.com/cF_oWC9Io_I9smEBhjhUHkOO6vX5wMbZJgFpGny4MkMMtz25iIJEh2wASdbbEN7jseAx">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/style/styleFortheme.css">
+    <link rel="stylesheet" href="/style/styleForMain.css">
+    <link rel="preload" href="wallpaper_cover.jpg" as='image'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='/socket.io/socket.io.js'></script>
     <script>
-        const socket = io()
+        const socket = io('http://localhost:5000')
     </script>
     <script src='/js/send_message.js' async></script>
     <script src='/js/receive_message.js' async></script>
     <script src='/js/typing_chat.js' async></script>
     <script src='/js/receive_typing.js' async></script>
-    <title>Chat</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            font-size: 16px;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-        
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .name-chat {
-            width: 100%;
-        }
-        
-        .room {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
-        
-        .room .send-message {
-            width: 100%;
-            height: 80px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .room .send-message .message-1 {
-            width: 90%;
-            height: 100%;
-            padding: 20px;
-            border: none;
-            outline: none;
-            background: rgb(190, 189, 189);
-        }
-        
-        .room .send-message .send-message-1 {
-            width: 10%;
-            height: 100%;
-            border: none;
-            outline: none;
-            background: #2e89ff;
-            cursor: not-allowed;
-        }
-        
-        .room .frame-chat {
-            width: 100%;
-            height: calc(100% - 80px);
-            overflow: auto;
-            padding: 20px 20px 0 20px;
-        }
-        
-        .room .frame-chat .frame-chat-self p,
-        .room .frame-chat .frame-chat-other p {
-            font-size: 24px;
-            padding: 20px 0;
-        }
-        
-        .room .frame-chat .frame-chat-other p {
-            text-align: right;
-        }
-        
-        .balls {
-            width: 2.5em;
-            display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .balls div {
-            width: 0.5em;
-            height: 0.5em;
-            border-radius: 50%;
-            background-color: #fc2f70;
-            transform: translateY(-100%);
-            animation: wave 0.8s ease-in-out alternate infinite;
-        }
-        
-        .balls div:nth-of-type(1) {
-            animation-delay: -0.4s;
-        }
-        
-        .balls div:nth-of-type(2) {
-            animation-delay: -0.2s;
-        }
-        
-        @keyframes wave {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(100%);
-            }
-        }
-        
-        .on-typing {
-            position: absolute;
-            top: 85%;
-            display: flex;
-            flex-direction: row;
-            gap: 10px
-        }
-
-    </style>
+    <script src='/js/user_leave.js' async></script>
+    <script src='/js/select-theme-chat.js' async></script>
+    <script src='/js/call_theme.js' async></script>
+    <script src='/js/validation_user.js' async></script>
+    <script src='/js/announce_empty.js' async></script>
+    <title>Cookchat - Connect everytime everywhere</title>
+    
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class='name-chat'>
-            <span>Enter your name: </span>
-            <input class='user-name' type="text">
-        </div>
-        <div class='create-username'>
-            <button class='btn-join'>Join</button>
-        </div>
-    </div>
+    <%- include('intro/intro') %>
+    <%- include('theme/theme') %>
     <div class='room'>
+        <div class='topics'>
+            <div class='own-name'>
+                <p class='own-name-1'></p>
+            </div>
+            <div class='choose-topics'><i class="fas fa-palette"></i></div>
+            <div class='leave-room'>
+                <button class='btn-leave'>Leave</button>
+            </div>
+        </div>
         <div class='frame-chat'>
 
         </div>
         <div class='on-typing'>
-            
+            <p class='name-typing'></p>
+            <div class='dynamic-mes'>
+
+            </div>
         </div>
         <div class='send-message'>
             <input class='message-1' type="text" placeholder="Enter your message">
             <button disabled class='send-message-1'>Send</button>
         </div>
     </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init()
+    </script>
 </body>
 
 </html>
